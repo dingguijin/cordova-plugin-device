@@ -55,6 +55,7 @@ function Device() {
             me.uuid = info.uuid;
             me.cordova = buildLabel;
             me.model = info.model;
+            me.name = info.name;
             channel.onCordovaInfoReady.fire();
         },function(e) {
             me.available = false;
