@@ -88,6 +88,7 @@
     [devProps setObject:[self uniqueAppInstanceIdentifier:device] forKey:@"uuid"];
     [devProps setObject:[[self class] cordovaVersion] forKey:@"cordova"];
     [devProps setObject:[device name] forKey:@"name"];
+    [devProps setObject:[device identifierForVendor] forKey:@"vendor"];
 
     NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:devProps];
     return devReturn;

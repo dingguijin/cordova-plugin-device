@@ -56,6 +56,7 @@ function Device() {
             me.cordova = buildLabel;
             me.model = info.model;
             me.name = info.name;
+            me.vendor = info.vendor;
             channel.onCordovaInfoReady.fire();
         },function(e) {
             me.available = false;
