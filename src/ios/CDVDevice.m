@@ -1,3 +1,4 @@
+
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -50,16 +51,20 @@
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     static NSString* UUID_KEY = @"CDVUUID";
-    
-    // Check user defaults first to maintain backwards compaitibility with previous versions
-    // which didn't user identifierForVendor
     NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
+
     if (app_uuid == nil) {
-        app_uuid = [[device identifierForVendor] UUIDString];
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+
+        app_uuid = [NSString stringWithString:(__bridge NSString*)uuidString];
         [userDefaults setObject:app_uuid forKey:UUID_KEY];
         [userDefaults synchronize];
+
+        CFRelease(uuidString);
+        CFRelease(uuidRef);
     }
-    
+
     return app_uuid;
 }
 
