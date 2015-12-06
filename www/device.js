@@ -59,10 +59,10 @@ function Device() {
             me.cordova = buildLabel;
             me.model = info.model;
             me.isVirtual = info.isVirtual;
-            me.manufacturer = info.manufacturer || 'unknown';
-            me.serial = info.serial || 'unknown';
             me.name = info.name;
             me.vendor = info.vendor;
+            me.manufacturer = info.manufacturer || 'unknown';
+            me.serial = info.serial || 'unknown';
             channel.onCordovaInfoReady.fire();
         },function(e) {
             me.available = false;
